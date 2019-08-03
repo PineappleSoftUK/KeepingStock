@@ -1,13 +1,17 @@
 <?php
+include("open_db.php");
+
 if (isset($_POST['submit'])) {
-  
-  include("open_db.php");
   
   //Process form and add to db...
   $description = $_POST['itemdesc'];
+  //$postage = intval($_POST['postage']);
+  $postage = 1;
+  
 
-  $stmt = $db->prepare('INSERT INTO sku (description) VALUES (:description)');
-  $stmt->bindValue(':description', $description, SQLITE3_TEXT);
+  $stmt = $db->prepare('INSERT INTO sku (description, postage) VALUES (:description, :postage)');
+  $stmt->bindValue(':description', $description);
+  $stmt->bindValue(':postage', $postage);
   $result = $stmt->execute();
   
   $idnumber = $db->lastInsertRowID();
@@ -48,7 +52,31 @@ if (isset($_POST['submit'])) {
     
     <form action="new_sku.php" method="post">
       Item Description:
-      <input type="text" name="itemdesc" placeholder="Item description...">
+      <input type="text" name="itemdesc" placeholder="Item description..."><br>
+      
+      <select name="postage">
+        
+        
+<?php        
+//SQLite query to populate options list for postage rates.)
+$res = $db->query('SELECT * FROM postage');
+
+while ($row = $res->fetchArray()) {
+  //PARANTHESES REMAIN OPEN FOR USE IN HTML BELOW
+?>
+      
+        
+      <option value="<?php echo $row['id'];?>"><?php echo $row['description'];?></option>
+      
+
+<?php
+} //End of query! 
+?>
+        
+        
+              
+      </select> <br>
+      
       <input type="submit" name="submit" value="Submit">
     </form>
     
