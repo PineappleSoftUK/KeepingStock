@@ -25,8 +25,9 @@ include("open_db.php");
       <thead>
       <tr>
         <th>SKU</th>
-        <th>Description</th>
         <th>Purchase ID</th>
+        <th>Description</th>
+        <th>Variant</th>
         <th>Date</th> 
         <th>Quantity</th>
         <th>Cost (each)</th>
@@ -36,16 +37,17 @@ include("open_db.php");
       
 <?php
 //SQLite query to populate table rows. Joins the SKU table and purchase table to link all purchases to their sku. The iD from each table has an alias (the purchase table 'id' is set to 'purchase_id' and so on.)
-$res = $db->query('SELECT sku.id AS sku_id, purchase.id AS purchase_id, sku, date, quantity, cost, description FROM purchase INNER JOIN sku on purchase.sku = sku.id');
+$res = $db->query('SELECT sku.id AS sku_id, purchase.id AS purchase_id, sku, date, variant, quantity, cost, description FROM purchase INNER JOIN sku on purchase.sku = sku.id');
 
 while ($row = $res->fetchArray()) {
   //PARANTHESES REMAIN OPEN FOR USE IN HTML BELOW
 ?>
       
       <tr>
-        <td><?php echo $row['sku'];?></td> 
-        <td><?php echo $row['description'];?></td>
+        <td><?php echo $row['sku'];?></td>
         <td><?php echo $row['purchase_id'];?></td>
+        <td><?php echo $row['description'];?></td>
+        <td><?php echo $row['variant'];?></td>
         <td><?php echo $row['date'];?></td>
         <td><?php echo $row['quantity'];?></td>
         <td><?php echo $row['cost'];?></td>

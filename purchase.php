@@ -1,16 +1,40 @@
 <?php
-if (isset($_POST['submit'])) {
+//Var for the default value of the SKU field in the purchase form. If a new SKU number is generated this variable will be set in the if statement that follows.
+$newSKU = "";
+
+//Check to see if a new sku was generated and add the sku to the db
+if (isset($_POST['itemdesc'])) {
+  
+  include("open_db.php");
+  
+  //Process form and add to db...
+  $description = $_POST['itemdesc'];
+  $postage = intval($_POST['postage']);
+  
+  $stmt = $db->prepare('INSERT INTO sku (description, postage) VALUES (:description, :postage)');
+  $stmt->bindValue(':description', $description);
+  $stmt->bindValue(':postage', $postage);
+  $result = $stmt->execute();
+  
+  $newSKU = $db->lastInsertRowID();
+  
+}
+
+//Check to see if a new purchase is being added and if so, add to the db
+if (isset($_POST['sku'])) {
   
   include("open_db.php");
   
   //Process form and add to db...
   $sku = $_POST['sku'];
+  $variant = $_POST['variant'];
   $date = $_POST['date'];
   $quantity = $_POST['quantity'];
   $cost = $_POST['cost'];
 
-  $stmt = $db->prepare('INSERT INTO purchase (sku, date, quantity, cost) VALUES (:sku, :date, :quantity, :cost)');
+  $stmt = $db->prepare('INSERT INTO purchase (sku, variant, date, quantity, cost) VALUES (:sku, :variant, :date, :quantity, :cost)');
   $stmt->bindValue(':sku', $sku);
+  $stmt->bindValue(':variant', $variant);
   $stmt->bindValue(':date', $date);
   $stmt->bindValue(':quantity', $quantity);
   $stmt->bindValue(':cost', $cost);
@@ -52,10 +76,20 @@ if (isset($_POST['submit'])) {
     <h1>Keeping Stock</h1>
     <h2>Purchase</h2>
     
+    <?php
+    //A new sku was generated, echo the results:
+    if (isset($_POST['itemdesc'])) {
+      echo "<p>New item successfully added. SKU number <b>" . $newSKU . "</b> was generated</p>";
+    }    
+    ?>
+    
     <form method="post">
       SKU:
-      <input type="text" name="sku" placeholder="SKU...">
+      <input type="text" name="sku" value="<?php echo $newSKU; ?>" placeholder="SKU...">
       <a href="new_sku.php">New SKU</a><br>
+      
+      Colour/Type/Variant (Optional):
+      <input type="text" name="variant" placeholder="Variant (optional)..."><br>
       
       Date:
       <input type="date" name="date"><br>

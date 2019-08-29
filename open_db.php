@@ -29,7 +29,7 @@ if ($tableCheck->fetchArray() === false){
   $db->exec('CREATE TABLE IF NOT EXISTS sku (id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR(255), postage INTEGER)');
 
   //Purchase/Individual Item Table
-  $db->exec('CREATE TABLE IF NOT EXISTS purchase (id INTEGER PRIMARY KEY AUTOINCREMENT, sku INTEGER, date DATE, quantity INTEGER, cost REAL)');
+  $db->exec('CREATE TABLE IF NOT EXISTS purchase (id INTEGER PRIMARY KEY AUTOINCREMENT, sku INTEGER, variant VARCHAR(255), date DATE, quantity INTEGER, cost REAL)');
 
   //Postage Rates Table
   $db->exec('CREATE TABLE IF NOT EXISTS postage (id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR(255), price REAL)');
