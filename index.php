@@ -45,12 +45,12 @@ while ($row = $res->fetchArray()) {
       
       <tr>
         <td><?php echo $row['sku'];?></td>
-        <td><?php echo $row['purchase_id'];?></td>
+        <td><a href="details.php?item=<?php echo $row['purchase_id'];?>"><?php echo $row['purchase_id'];?></a></td>
         <td><?php echo $row['description'];?></td>
         <td><?php echo $row['variant'];?></td>
         <td><?php echo $row['date'];?></td>
         <td><?php echo $row['quantity'];?></td>
-        <td><?php echo $row['cost'];?></td>
+        <td><?php echo money_format('%.2n',$row['cost']);?></td>
       </tr>
       
 

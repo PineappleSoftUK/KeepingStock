@@ -3,6 +3,9 @@
  * Initialise the db: opens existing db or creates new. 
  * Also creates a set of tables if they don't yet exist.
  */
+
+//The following statement is needed to show GBP money symbol
+setlocale(LC_MONETARY,'en_GB.UTF-8');
  
 //Firstly create new db if needed...
 class ConstructDB extends SQLite3
