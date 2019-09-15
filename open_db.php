@@ -37,6 +37,9 @@ if ($tableCheck->fetchArray() === false){
   //Postage Rates Table
   $db->exec('CREATE TABLE IF NOT EXISTS postage (id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR(255), price REAL)');
   
+  //Settings table
+  $db->exec('CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY AUTOINCREMENT, packagingfee REAL, margin REAL, ebaypercentage REAL, paypalpercentage REAL, paypalflatfee REAL)');
+  
   //Populate postage types
   
   $types = array(
@@ -98,6 +101,17 @@ if ($tableCheck->fetchArray() === false){
     $stmt->bindValue(':price', $value);
     $result = $stmt->execute();
   }
+  
+  //Populate default settings
+  
+  $stmt = $db->prepare('INSERT INTO settings (packagingfee, margin, ebaypercentage, paypalpercentage, paypalflatfee) VALUES (:packagingfee, :margin, :ebaypercentage, :paypalpercentage, :paypalflatfee)');
+  
+  $stmt->bindValue(':packagingfee', 0.10);
+  $stmt->bindValue(':margin', 0.50);
+  $stmt->bindValue(':ebaypercentage', 0.10);
+  $stmt->bindValue(':paypalpercentage', 0.034);
+  $stmt->bindValue(':paypalflatfee', 0.20);
+  $result = $stmt->execute();
     
 } 
 
