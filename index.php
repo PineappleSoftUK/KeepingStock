@@ -1,4 +1,5 @@
 <?php
+include("secure.php");
 include("open_db.php");
 ?>
 

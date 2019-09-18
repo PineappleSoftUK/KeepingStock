@@ -1,4 +1,5 @@
 <?php
+include("secure.php");
 include("open_db.php");
 
 //The following will clean up the 'item id' variable passed un the URI...
@@ -56,8 +57,11 @@ if (!isset($itemId)) {
     
     //+++++++++++++++++TODO!!+++++++++++++++
     
+    //0. Calculate margin cost (Cost x Margin Percentage)
+    $margincost = $res['cost'] * $margin;
+    
     //1. Purchase Price + Postage Cost + Packaging + Margin
-    $math1 = $res['cost'] + $res['price'] + $packagingfee + $margin;
+    $math1 = $res['cost'] + $res['price'] + $packagingfee + $margincost;
         
     //2. Calculate fees based on above
     $math2 = ($math1 * $ebaypercentage) + ($math1 * $paypalpercentage) + $paypalflatfee;

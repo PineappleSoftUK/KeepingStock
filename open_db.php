@@ -1,4 +1,5 @@
 <?php
+include("secure.php");
 /**
  * Initialise the db: opens existing db or creates new. 
  * Also creates a set of tables if they don't yet exist.

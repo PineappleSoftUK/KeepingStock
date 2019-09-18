@@ -1,4 +1,6 @@
 <?php
+include("secure.php");
+
 if (isset($_POST['submit'])) {
   
   include("open_db.php");

@@ -1,4 +1,5 @@
 <?php
+include("secure.php");
 include("open_db.php");
 
 if (isset($_POST['submit'])) {
@@ -86,6 +87,8 @@ if (isset($_POST['submit'])) {
     </div>
     <h1>Keeping Stock</h1>
     <h2>Settings</h2>
+    
+    <p>Version 0.1.1 (beta). Released 18 Sep 2019</p>
     
     <a href="postage_editor.php">Click here to adjust postage rates</a>
     

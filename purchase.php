@@ -1,4 +1,5 @@
 <?php
+include("secure.php");
 //Var for the default value of the SKU field in the purchase form. If a new SKU number is generated this variable will be set in the if statement that follows.
 $newSKU = "";
 
