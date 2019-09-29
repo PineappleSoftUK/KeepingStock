@@ -49,7 +49,9 @@ if (isset($_POST['sku'])) {
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Keeping Stock</title>
+    
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -94,7 +96,9 @@ if (isset($_POST['sku'])) {
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Keeping Stock</title>
+    
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -123,6 +127,8 @@ if (isset($_POST['sku'])) {
       SKU:
       <input type="text" name="sku" value="<?php echo $newSKU; ?>" placeholder="SKU...">
       <a href="new_sku.php">New SKU</a><br>
+      
+      <br><br>
       
       Colour/Type/Variant (Optional):
       <input type="text" name="variant" placeholder="Variant (optional)..."><br>

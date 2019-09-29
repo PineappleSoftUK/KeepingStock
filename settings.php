@@ -24,7 +24,9 @@ if (isset($_POST['submit'])) {
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Keeping Stock</title>
+    
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -70,7 +72,9 @@ if (isset($_POST['submit'])) {
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Keeping Stock</title>
+    
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -88,7 +92,7 @@ if (isset($_POST['submit'])) {
     <h1>Keeping Stock</h1>
     <h2>Settings</h2>
     
-    <p>Version 0.1.1 (beta). Released 18 Sep 2019</p>
+    <p>Version 0.2.0 (beta). Released 29 Sep 2019</p>
     
     <a href="postage_editor.php">Click here to adjust postage rates</a>
     

@@ -7,6 +7,7 @@ include("open_db.php");
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Keeping Stock</title>
     
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -26,51 +27,55 @@ include("open_db.php");
     </div>
     <h1>Keeping Stock</h1>
     
-    <a href="sale.php">Sale</a>
-    <a href="purchase.php">Purchase</a>
+    <a class="button" href="sale.php">Sale</a>
+    <a class="button" href="purchase.php">Purchase</a>
+    
+    <br>
     
     <form>
       <input type="text" id="search" name="search" placeholder="Search...">
     </form>
     
-    <table style="width:100%">
-      <thead>
-      <tr>
-        <th>SKU</th>
-        <th>Purchase ID</th>
-        <th>Description</th>
-        <th>Variant</th>
-        <th>Date</th> 
-        <th>Quantity</th>
-        <th>Cost (each)</th>
-      </tr>
-      </thead>
-      <tbody id="maintable">
-      
-<?php
-//SQLite query to populate table rows. Joins the SKU table and purchase table to link all purchases to their sku. The iD from each table has an alias (the purchase table 'id' is set to 'purchase_id' and so on.)
-$res = $db->query('SELECT sku.id AS sku_id, purchase.id AS purchase_id, sku, date, variant, quantity, cost, description FROM purchase INNER JOIN sku on purchase.sku = sku.id');
+    <div style="overflow-x:auto;">    
+      <table style="width:100%">
+        <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Purchase ID</th>
+          <th>Description</th>
+          <th>Variant</th>
+          <th>Date</th> 
+          <th>Quantity</th>
+          <th>Cost (each)</th>
+        </tr>
+        </thead>
+        <tbody id="maintable">
 
-while ($row = $res->fetchArray()) {
-  //PARANTHESES REMAIN OPEN FOR USE IN HTML BELOW
-?>
-      
-      <tr>
-        <td><?php echo $row['sku'];?></td>
-        <td><a href="details.php?item=<?php echo $row['purchase_id'];?>"><?php echo $row['purchase_id'];?></a></td>
-        <td><?php echo $row['description'];?></td>
-        <td><?php echo $row['variant'];?></td>
-        <td><?php echo $row['date'];?></td>
-        <td><?php echo $row['quantity'];?></td>
-        <td><?php echo money_format('%.2n',$row['cost']);?></td>
-      </tr>
-      
+  <?php
+  //SQLite query to populate table rows. Joins the SKU table and purchase table to link all purchases to their sku. The iD from each table has an alias (the purchase table 'id' is set to 'purchase_id' and so on.)
+  $res = $db->query('SELECT sku.id AS sku_id, purchase.id AS purchase_id, sku, date, variant, quantity, cost, description FROM purchase INNER JOIN sku on purchase.sku = sku.id');
 
-<?php
-} //End of query!  
-?>
-    </tbody>
-    </table>
+  while ($row = $res->fetchArray()) {
+    //PARANTHESES REMAIN OPEN FOR USE IN HTML BELOW
+  ?>
+
+        <tr>
+          <td><?php echo $row['sku'];?></td>
+          <td><a href="details.php?item=<?php echo $row['purchase_id'];?>"><?php echo $row['purchase_id'];?></a></td>
+          <td><?php echo $row['description'];?></td>
+          <td><?php echo $row['variant'];?></td>
+          <td><?php echo $row['date'];?></td>
+          <td><?php echo $row['quantity'];?></td>
+          <td><?php echo money_format('%.2n',$row['cost']);?></td>
+        </tr>
+
+
+  <?php
+  } //End of query!  
+  ?>
+      </tbody>
+      </table>
+    </div>
     
     
     <script>
