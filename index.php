@@ -47,6 +47,7 @@ include("open_db.php");
           <th>Date</th> 
           <th>Quantity</th>
           <th>Cost (each)</th>
+          <th>Edit/Delete</th>
         </tr>
         </thead>
         <tbody id="maintable">
@@ -67,6 +68,7 @@ include("open_db.php");
           <td><?php echo $row['date'];?></td>
           <td><?php echo $row['quantity'];?></td>
           <td><?php echo money_format('%.2n',$row['cost']);?></td>
+          <td><a href="edit.php?item=<?php echo $row['purchase_id'];?>"><i class="fa fa-edit"></i></a></td>
         </tr>
 
 
