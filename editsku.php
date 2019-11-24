@@ -14,19 +14,13 @@ if (!isset($_POST['submit'])) {
 
 if (isset($_POST['submit'])) {
   
-  $sku = $_POST['sku'];
-  $variant = $_POST['variant'];
-  $date = $_POST['date'];
-  $quantity = $_POST['quantity'];
-  $cost = $_POST['cost'];
-  $id = $_POST['purchaseid'];
+  $description = $_POST['description'];
+  $postage = $_POST['postage'];
+  $id = $_POST['sku_id'];
   
-  $stmt = $db->prepare("UPDATE purchase SET sku = :sku, variant = :variant, date = :date, quantity = :quantity, cost = :cost WHERE id = :id");
-  $stmt->bindValue(':sku', $sku);
-  $stmt->bindValue(':variant', $variant);
-  $stmt->bindValue(':date', $date);
-  $stmt->bindValue(':quantity', $quantity);
-  $stmt->bindValue(':cost', $cost);
+  $stmt = $db->prepare("UPDATE sku SET description = :description, postage = :postage WHERE id = :id");
+  $stmt->bindValue(':description', $description);
+  $stmt->bindValue(':postage', $postage);
   $stmt->bindValue(':id', $id);
   $result = $stmt->execute();
   
@@ -48,14 +42,14 @@ if (isset($_POST['submit'])) {
       <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php">Purchase</a>
-      <a href="stock.php">Stock</a>
+      <a href="stock.php" class="active">Stock</a>
       <a href="settings.php">Settings</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
     </div>
     <h1>Keeping Stock</h1>
-    <h2>Edit</h2>
+    <h2>Edit SKU</h2>
     
     <p>Sucessfully updated.</p>
     <p>Would you like to return to <a href="index.php">home</a>? 
@@ -97,46 +91,58 @@ if (isset($_POST['submit'])) {
       <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php">Purchase</a>
-      <a href="stock.php">Stock</a>
+      <a href="stock.php" class="active">Stock</a>
       <a href="settings.php">Settings</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
     </div>
     <h1>Keeping Stock</h1>
-    <h2>Edit</h2>
+    <h2>Edit SKU</h2>
     
-    <a href="delete.php?type=purchase&item=<?php echo $itemId;?>">Delete record</a>
+    <a href="delete.php?type=sku&item=<?php echo $itemId;?>">Delete record</a>
         
-    <form action="edit.php" method="post">
+    <form action="editsku.php" method="post">
     <br>  
       
       <?php
-      $stmt = $db->prepare('SELECT * FROM purchase WHERE id = :itemnumber');
+      $stmt = $db->prepare('SELECT * FROM sku WHERE id = :itemnumber');
       $stmt->bindValue(':itemnumber', $itemId);
       $result = $stmt->execute();
       $res = $result->fetchArray();
       ?>
             
-      Purchase ID: <?php echo $res['id'];?><br>
+      SKU: <?php echo $res['id'];?><br>
       <br><br>
       
-      SKU:
-      <input type="number" step="0.01" name="sku" value="<?php echo $res['sku'];?>"><br>
+      Description:
+      <input type="text" name="description" value="<?php echo $res['description'];?>"><br>
       
-      Variant:
-      <input type="text" name="variant" value="<?php echo $res['variant'];?>"><br>
+      Postage:
+            <select name="postage">
+        
+        
+<?php        
+//SQLite query to populate options list for postage rates.)
+$res2 = $db->query('SELECT * FROM postage');
+
+while ($row = $res2->fetchArray()) {
+  //PARANTHESES REMAIN OPEN FOR USE IN HTML BELOW
+?>
       
-      Date:
-      <input type="date" name="date" value="<?php echo $res['date'];?>"><br>
+        
+      <option value="<?php echo $row['id'];?>"><?php echo $row['description'];?></option>
       
-      Quantity:
-      <input type="number" step="1" name="quantity" value="<?php echo $res['quantity'];?>"><br>
+
+<?php
+} //End of query! 
+?>
+        
+        
+              
+      </select> <br> <br>
       
-      Cost:
-      <input type="number" step="0.01" name="cost" value="<?php echo $res['cost'];?>"><br>
-      
-      <input type="hidden" id="purchaseid" name="purchaseid" value="<?php echo $res['id'];?>">
+      <input type="hidden" id="sku_id" name="sku_id" value="<?php echo $res['id'];?>">
       
       <input type="submit" name="submit" value="Submit">
     </form>

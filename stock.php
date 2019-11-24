@@ -20,7 +20,7 @@ include("open_db.php");
       <a href="index.php" class="active">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php">Purchase</a>
-      <a href="stock.php">Stock</a>
+      <a href="stock.php" class="active">Stock</a>
       <a href="settings.php">Settings</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
@@ -42,12 +42,8 @@ include("open_db.php");
         <thead>
         <tr>
           <th>SKU</th>
-          <th>Purchase ID</th>
           <th>Description</th>
-          <th>Variant</th>
-          <th>Date</th> 
-          <th>Quantity</th>
-          <th>Cost (each)</th>
+          <th>Postage</th>
           <th>Edit/Delete</th>
         </tr>
         </thead>
@@ -55,21 +51,17 @@ include("open_db.php");
 
   <?php
   //SQLite query to populate table rows. Joins the SKU table and purchase table to link all purchases to their sku. The iD from each table has an alias (the purchase table 'id' is set to 'purchase_id' and so on.)
-  $res = $db->query('SELECT sku.id AS sku_id, purchase.id AS purchase_id, sku, date, variant, quantity, cost, description FROM purchase INNER JOIN sku on purchase.sku = sku.id');
+  $res = $db->query('SELECT sku.id AS sku_id, sku.description AS sku_desc, sku.postage, postage.description AS post_desc FROM sku INNER JOIN postage on sku.postage = postage.id');
 
   while ($row = $res->fetchArray()) {
     //PARANTHESES REMAIN OPEN FOR USE IN HTML BELOW
   ?>
 
         <tr>
-          <td><?php echo $row['sku'];?></td>
-          <td><a href="details.php?item=<?php echo $row['purchase_id'];?>"><?php echo $row['purchase_id'];?></a></td>
-          <td><?php echo $row['description'];?></td>
-          <td><?php echo $row['variant'];?></td>
-          <td><?php echo $row['date'];?></td>
-          <td><?php echo $row['quantity'];?></td>
-          <td><?php echo money_format('%.2n',$row['cost']);?></td>
-          <td><a href="edit.php?item=<?php echo $row['purchase_id'];?>"><i class="fa fa-edit"></i></a></td>
+          <td><?php echo $row['sku_id'];?></td>
+          <td><?php echo $row['sku_desc'];?></td>
+          <td><?php echo $row['post_desc'];?></td>
+          <td><a href="editsku.php?item=<?php echo $row['sku_id'];?>"><i class="fa fa-edit"></i></a></td>
         </tr>
 
 

@@ -61,6 +61,7 @@ if (isset($_POST['sku'])) {
       <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php" class="active">Purchase</a>
+      <a href="stock.php">Stock</a>
       <a href="settings.php">Settings</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
@@ -108,6 +109,7 @@ if (isset($_POST['sku'])) {
       <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php" class="active">Purchase</a>
+      <a href="stock.php">Stock</a>
       <a href="settings.php">Settings</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>

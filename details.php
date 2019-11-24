@@ -26,6 +26,7 @@ if (!isset($itemId)) {
       <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php">Purchase</a>
+      <a href="stock.php">Stock</a>
       <a href="settings.php">Settings</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>

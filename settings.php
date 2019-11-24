@@ -36,6 +36,7 @@ if (isset($_POST['submit'])) {
       <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php">Purchase</a>
+      <a href="stock.php">Stock</a>
       <a href="settings.php" class="active">Settings</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
@@ -84,6 +85,7 @@ if (isset($_POST['submit'])) {
       <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php">Purchase</a>
+      <a href="stock.php">Stock</a>
       <a href="settings.php" class="active">Settings</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
@@ -92,7 +94,7 @@ if (isset($_POST['submit'])) {
     <h1>Keeping Stock</h1>
     <h2>Settings</h2>
     
-    <p>Version 0.2.0 (beta). Released 29 Sep 2019</p>
+    <p>Version 1.0.0 - Released 24 Nov 2019</p>
     
     <a href="postage_editor.php">Click here to adjust postage rates</a>
     
