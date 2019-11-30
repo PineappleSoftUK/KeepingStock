@@ -76,6 +76,7 @@ th, td {
 th {
   background-color: #4CAF50;
   color: white;
+  cursor: pointer; /*to allow sorting*/
 }
 
 tr:nth-child(even) {

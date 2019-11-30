@@ -84,7 +84,7 @@ if (!isset($itemId)) {
     
     <p>Item <?php echo $res['purchase_id'];?> - Variant: <?php echo $res['variant'];?></p>      
     
-    <p>Purchased on <?php echo $res['date'];?></p>
+    <p>Purchased on <?php echo date("d-m-Y", strtotime($res['date']));?></p>
     
     <p><?php echo $res['quantity'];?> in stock</p>
     

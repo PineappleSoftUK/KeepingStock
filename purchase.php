@@ -136,7 +136,7 @@ if (isset($_POST['sku'])) {
       <input type="text" name="variant" placeholder="Variant (optional)..."><br>
       
       Date:
-      <input type="date" name="date"><br>
+      <input type="date" name="date" value="<?php echo date("Y-m-j"); ?>"><br>
       
       Quantity:
       <input type="number" name="quantity"><br>

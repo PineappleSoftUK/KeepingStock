@@ -17,7 +17,7 @@ include("open_db.php");
   </head>
   <body>
     <div class="topnav" id="myTopnav">
-      <a href="index.php" class="active">Home</a>
+      <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php">Purchase</a>
       <a href="stock.php" class="active">Stock</a>
@@ -27,12 +27,7 @@ include("open_db.php");
       </a>
     </div>
     <h1>Keeping Stock</h1>
-    
-    <a class="button" href="sale.php">Sale</a>
-    <a class="button" href="purchase.php">Purchase</a>
-    
-    <br>
-    
+        
     <form>
       <input type="text" id="search" name="search" placeholder="Search...">
     </form>

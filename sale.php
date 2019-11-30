@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
     <h2>Sale</h2>
     
     <form action="sale.php" method="post">
-      Item ID:
+      Purchase ID:
       <input type="number" name="item"><br>
       Quantity:
       <input type="number" name="quantity"><br>
