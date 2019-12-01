@@ -33,12 +33,12 @@ include("open_db.php");
     </form>
     
     <div style="overflow-x:auto;">    
-      <table style="width:100%">
+      <table id="mainTable" style="width:100%">
         <thead>
         <tr>
-          <th>SKU</th>
-          <th>Description</th>
-          <th>Postage</th>
+          <th onclick="sortTable(0)">SKU</th>
+          <th onclick="sortTable(1)">Description</th>
+          <th onclick="sortTable(2)">Postage</th>
           <th>Edit/Delete</th>
         </tr>
         </thead>
@@ -91,6 +91,80 @@ include("open_db.php");
         }
       }
     </script>
+    <script>
+    /* Sort table by clicking TH */
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("mainTable");
+      switching = true;
+      // Set the sorting direction to ascending:
+      dir = "asc"; 
+      /* Make a loop that will continue until
+      no switching has been done: */
+      while (switching) {
+        // Start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /* Loop through all table rows (except the
+        first, which contains table headers): */
+        for (i = 1; i < (rows.length - 1); i++) {
+          // Start by saying there should be no switching:
+          shouldSwitch = false;
+          /* Get the two elements you want to compare,
+          one from current row and one from the next: */
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+          /* Check if the two rows should switch place,
+          based on the direction, asc or desc: */
+          /* CURRENCY */
+          if (n == 0) { /* The n here relates to the column numberm as per the TH above */
+            if (dir == "asc") {
+              if (Number(x.innerHTML.replace(/[£,]+/g,"")) > Number(y.innerHTML.replace(/[£,]+/g,""))) {
+              shouldSwitch = true;
+              break;
+              }
+            } else if (dir == "desc") {
+              if (Number(x.innerHTML.replace(/[£,]+/g,"")) < Number(y.innerHTML.replace(/[£,]+/g,""))) {
+              shouldSwitch = true;
+              break;
+              }
+            }
+          } else {
+          /* TEXT */
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                // If so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                // If so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+        }
+        if (shouldSwitch) {
+          /* If a switch has been marked, make the switch
+          and mark that a switch has been done: */
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          // Each time a switch is done, increase this count by 1:
+          switchcount ++; 
+        } else {
+          /* If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again. */
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+    </script>
+
     
   </body>
 </html>

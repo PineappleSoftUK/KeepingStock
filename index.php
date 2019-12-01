@@ -37,6 +37,11 @@ include("open_db.php");
       <input type="text" id="search" name="search" placeholder="Search...">
     </form>
     
+    <form id="radio">
+      <input type="radio" name="showHide" value="show" checked="checked">Show 'Out of Stock'
+      <input type="radio" name="showHide" value="hide">Hide 'Out of Stock'
+    </form>
+    
     <div style="overflow-x:auto;">    
       <table id="mainTable" style="width:100%">
         <thead>
@@ -63,7 +68,7 @@ include("open_db.php");
 
         <tr>
           <td><?php echo $row['sku'];?></td>
-          <td><a href="details.php?item=<?php echo $row['purchase_id'];?>"><?php echo $row['purchase_id'];?></a></td>
+          <td id="uri"><a href="details.php?item=<?php echo $row['purchase_id'];?>"><?php echo $row['purchase_id'];?></a></td>
           <td><?php echo $row['description'];?></td>
           <td><?php echo $row['variant'];?></td>
           <td><?php echo date("d-m-Y", strtotime($row['date']));?></td>
@@ -129,7 +134,8 @@ include("open_db.php");
           y = rows[i + 1].getElementsByTagName("TD")[n];
           /* Check if the two rows should switch place,
           based on the direction, asc or desc: */
-          if (n == 0 | n == 5 | n == 6) {
+          /* CURRENCY */
+          if (n == 0 | n == 5 | n == 6) { /* The n here relates to the column numberm as per the TH above */
             if (dir == "asc") {
               if (Number(x.innerHTML.replace(/[£,]+/g,"")) > Number(y.innerHTML.replace(/[£,]+/g,""))) {
               shouldSwitch = true;
@@ -141,7 +147,21 @@ include("open_db.php");
               break;
               }
             }
+          /* NUMBER */
+          } else if (n == 1) {
+            if (dir == "asc") {
+              if (Number(x.getElementsByTagName('a')[0].innerHTML) > Number(y.getElementsByTagName('a')[0].innerHTML)) {
+              shouldSwitch = true;
+              break;
+              }
+            } else if (dir == "desc") {
+              if (Number(x.getElementsByTagName('a')[0].innerHTML) < Number(y.getElementsByTagName('a')[0].innerHTML)) {
+              shouldSwitch = true;
+              break;
+              }
+            }
           } else {
+          /* TEXT */
             if (dir == "asc") {
               if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                 // If so, mark as a switch and break the loop:
@@ -174,6 +194,40 @@ include("open_db.php");
         }
       }
     }
+    </script>
+    <script>
+      /* Hide any table row where the quantity is equal to zero */
+      
+      $("input[name='showHide']").change(function(){
+        var inputValue = $(this).attr("value");
+        if (inputValue == "show") {
+          showNilStock();
+        } else {
+          hideNilStock();
+        }
+      });
+      function hideNilStock(){
+        var numberOfRows, i, cellContent;
+        numberOfRows = document.getElementById("mainTable").rows.length -1;
+        for (i = 1; i < (numberOfRows + 1); i++) {
+          cellContent = document.getElementById("mainTable").rows[i].cells[5].innerHTML;
+          if (cellContent == 0) {
+            document.getElementById("mainTable").rows[i].style.display = 'none';
+          }
+        }
+      }
+      
+      function showNilStock(){
+        var numberOfRows, i, cellContent;
+        numberOfRows = document.getElementById("mainTable").rows.length -1;
+        for (i = 1; i < (numberOfRows + 1); i++) {
+          cellContent = document.getElementById("mainTable").rows[i].cells[5].innerHTML;
+          if (cellContent == 0) {
+            document.getElementById("mainTable").rows[i].style.display = '';
+          }
+        }
+      }
+      
     </script>
     
   </body>

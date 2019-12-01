@@ -134,6 +134,10 @@ input[type=button], input[type=submit], input[type=reset] {
   padding-left: 40px;
 }
 
+#radio {
+  
+}
+
 /* OTHERS */
 .button {
   background-color: #ddd;
