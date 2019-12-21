@@ -17,7 +17,7 @@ include("open_db.php");
   </head>
   <body>
     <div class="topnav" id="myTopnav">
-      <a href="index.php" class="active">Home</a>
+      <a href="index.php">Home</a>
       <a href="sale.php">Sale</a>
       <a href="purchase.php">Purchase</a>
       <a href="stock.php">Stock</a>
@@ -27,19 +27,16 @@ include("open_db.php");
       </a>
     </div>
     <h1>Keeping Stock</h1>
-    
-    <a class="button" href="sale.php">Sale</a>
-    <a class="button" href="purchase.php">Purchase</a>
-    <hr>
-    
-    <br>
-    
+    <h2>Advanced Search</h2>
+        
     <form>
-      <input type="text" id="search" name="search" placeholder="Search...">
+      Search SKU:
+      <input type="text" id="search_sku" name="search_sku" placeholder="Search for SKU..." onkeyup="searchSKU()">
+      <br>
+      
+      Search Purchase ID:
+      <input type="text" id="search_purchase" name="search_purchase" placeholder="Search for Purchase ID..." onkeyup="searchPurchase()">
     </form>
-    <p><a href="advanced.php">Advanced search</a></p>
-    
-    <br>
     
     <form>
       <label class="radio-inline">Show All
@@ -96,15 +93,48 @@ include("open_db.php");
     
     <script>
       /* Search script*/
-      $(document).ready(function(){
-        $("#search").on("keyup", function() {
-          var value = $(this).val().toLowerCase();
-          $("#maintable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-          });
-        });
-      });
-    
+      function searchSKU() {
+        // Declare variables 
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search_sku");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("mainTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          } 
+        }
+      }
+      function searchPurchase() {
+        // Declare variables 
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search_purchase");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("mainTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          } 
+        }
+      }
     </script>
     <script>
       /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
