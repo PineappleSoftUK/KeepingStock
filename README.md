@@ -11,6 +11,15 @@ Description
 A simple stock management system for ebay traders or the like.
 
 
+Important Information
+---------------------
+
+This is software written by me as practice and is not guaranteed to be error free, however it may be of use as a starting point for your own project and/or adapted to suit your own needs.
+
+The files need to be hosted on a webserver running php (ideally locally, if you intend to host on the web you will need to develop a log-in system, as this is not yet complete). On the initial visit to index.php a sqlite database will be created, please ensure you have the correct directory/folder permissions to allow this to happen. The interface should be self explanatory from there, the only page you need to navigate to manually is index.php.
+
+The system is currently designed for the UK and has UK postage rates.
+
 
 Licence
 --------
@@ -27,9 +36,9 @@ You should have received a copy of the GNU General Public License along with thi
 Release Notes
 --------------
 
-Version 0.0.0 -- 23 July 2019
+Version 1.1.0 -- 21 December 2019
 
-+ Project started
++ Added ability to sort columns, filter by 'out of stock' and advanced search
 
 
 Developer
