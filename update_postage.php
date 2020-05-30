@@ -1,49 +1,7 @@
 <?php
 include("secure.php");
-/**
- * Initialise the db: opens existing db or creates new. 
- * Also creates a set of tables if they don't yet exist.
- */
-
-//The following statement is needed to show GBP money symbol
-setlocale(LC_MONETARY,'en_GB.UTF-8');
- 
-//Firstly create new db if needed...
-class ConstructDB extends SQLite3
-{
-  function __construct()
-  {
-    $this->open('keepingstock.db');
-  }
-}
-
-$db = new ConstructDB();
-
-
-
-// Check to see if 'sku' table exists
-$tableCheck = $db->query("SELECT name FROM sqlite_master WHERE name='sku'");
-
-if ($tableCheck->fetchArray() === false){
-  
-  //SKU Table Doesnt Exist!
-  //Set up the following tables...
-
-  //SKU Table
-  $db->exec('CREATE TABLE IF NOT EXISTS sku (id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR(255), postage INTEGER)');
-
-  //Purchase/Individual Item Table
-  $db->exec('CREATE TABLE IF NOT EXISTS purchase (id INTEGER PRIMARY KEY AUTOINCREMENT, sku INTEGER, variant VARCHAR(255), date DATE, quantity INTEGER, cost REAL)');
-
-  //Postage Rates Table
-  $db->exec('CREATE TABLE IF NOT EXISTS postage (id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR(255), price REAL)');
-  
-  //Settings table
-  $db->exec('CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY AUTOINCREMENT, packagingfee REAL, margin REAL, ebaypercentage REAL, paypalpercentage REAL, paypalflatfee REAL)');
-  
-  //Populate postage types
-  
-  $types = array(
+include("open_db.php");
+$types = array(
   
   "1st class stamp" => 0.76,
   "2nd class stamp" => 0.65,
@@ -95,25 +53,12 @@ if ($tableCheck->fetchArray() === false){
   "Signed for - 1st class medium parcel 20kg" => 34.40
   );
   
-  $stmt = $db->prepare('INSERT INTO postage (description, price) VALUES (:description, :price)');
-  
-  foreach ($types as $key => $value) {
-    $stmt->bindValue(':description', $key);
-    $stmt->bindValue(':price', $value);
-    $result = $stmt->execute();
-  }
-  
-  //Populate default settings
-  
-  $stmt = $db->prepare('INSERT INTO settings (packagingfee, margin, ebaypercentage, paypalpercentage, paypalflatfee) VALUES (:packagingfee, :margin, :ebaypercentage, :paypalpercentage, :paypalflatfee)');
-  
-  $stmt->bindValue(':packagingfee', 0.10);
-  $stmt->bindValue(':margin', 0.50);
-  $stmt->bindValue(':ebaypercentage', 0.10);
-  $stmt->bindValue(':paypalpercentage', 0.034);
-  $stmt->bindValue(':paypalflatfee', 0.20);
-  $result = $stmt->execute();
-    
-} 
+$stmt = $db->prepare('UPDATE postage SET price= :price WHERE description= :description');
 
+foreach ($types as $key => $value) {
+  $stmt->bindValue(':description', $key);
+  $stmt->bindValue(':price', $value);
+  $result = $stmt->execute();
+}
+ 
 ?>
