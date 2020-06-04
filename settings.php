@@ -94,7 +94,7 @@ if (isset($_POST['submit'])) {
     <h1>Keeping Stock</h1>
     <h2>Settings</h2>
     
-    <p>Version 1.1.0 - Released 21 Dec 2019</p>
+    <p>Version 1.2.0 - Released 4 June 2020</p>
     
     <a href="postage_editor.php">Click here to adjust postage rates</a>
     
