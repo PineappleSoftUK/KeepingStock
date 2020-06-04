@@ -36,6 +36,12 @@ You should have received a copy of the GNU General Public License along with thi
 Release Notes
 --------------
 
+Version 1.2.0 -- 4 June 2020
+
++ Added function to automatically change the postage rates to the latest Royal Mail prices.
+
++ Changed some styling
+
 Version 1.1.0 -- 21 December 2019
 
 + Added ability to sort columns, filter by 'out of stock' and advanced search
