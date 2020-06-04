@@ -52,13 +52,69 @@ $types = array(
   "Signed for - 1st class medium parcel 10kg" => 22.90,
   "Signed for - 1st class medium parcel 20kg" => 34.40
   );
-  
-$stmt = $db->prepare('UPDATE postage SET price= :price WHERE description= :description');
-
-foreach ($types as $key => $value) {
-  $stmt->bindValue(':description', $key);
-  $stmt->bindValue(':price', $value);
-  $result = $stmt->execute();
-}
- 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Keeping Stock</title>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="index.php">Home</a>
+      <a href="sale.php">Sale</a>
+      <a href="purchase.php">Purchase</a>
+      <a href="stock.php">Stock</a>
+      <a href="settings.php" class="active">Settings</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <h1>Keeping Stock</h1>
+    <h2>Edit Postage Rates</h2>
+
+    <?php
+    //If not yet confirmed
+    if (!isset($_POST['submit'])){
+    ?>
+    <p>Clicking update will reset all of the original Royal Mail postage rates to the latest prices valid from 20 March 2020, overwriting any changes you may have made to these rates previously. Are you sure you wish to continue?</p>
+    <form action="update_postage.php" method="post">
+      <input type="submit" name="submit" value="Update">
+    </form>
+    <?php  
+    } else {
+    
+      //If confirmed...
+      $stmt = $db->prepare('UPDATE postage SET price= :price WHERE description= :description');
+
+      foreach ($types as $key => $value) {
+        $stmt->bindValue(':description', $key);
+        $stmt->bindValue(':price', $value);
+        $result = $stmt->execute();
+      }
+    ?>
+    
+    <p>The rates have been successfully updated.</p>
+    
+    <?php
+    }
+    ?>
+    <script>
+      /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+      function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      }
+    </script>
+    
+  </body>
+</html>

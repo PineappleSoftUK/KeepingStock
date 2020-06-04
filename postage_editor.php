@@ -112,6 +112,8 @@ if (isset($_POST['submit'])) {
     <h1>Keeping Stock</h1>
     <h2>Edit Postage Rates</h2>
     
+    <p><a href="update_postage.php">Click here to set all Royal Mail rates to the latest prices</a></p>
+    
     <form action="postage_editor.php" method="post">
       
       
