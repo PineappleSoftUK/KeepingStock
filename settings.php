@@ -92,10 +92,11 @@ if (isset($_POST['submit'])) {
       </a>
     </div>
     <h1>Keeping Stock</h1>
-    <h2>Settings</h2>
-    
     <p>Version 1.2.0 - Released 4 June 2020</p>
-    
+    <p>Includes PineappleAccessControl Version 1.0.1</p>
+    <hr>
+    <h2>Settings</h2>
+        
     <a href="postage_editor.php">Click here to adjust postage rates</a>
     
     <form action="settings.php" method="post">
