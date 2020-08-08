@@ -22,6 +22,11 @@ include("open_db.php");
       <a href="purchase.php">Purchase</a>
       <a href="stock.php">Stock</a>
       <a href="settings.php">Settings</a>
+      <?php 
+      if ($pac = "yes") {
+        echo "<a href='pineappleaccesscontrol/logout.php' style='float:right;'>Log out</a>";
+      }
+      ?>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
