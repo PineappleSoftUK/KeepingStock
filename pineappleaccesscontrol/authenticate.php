@@ -17,6 +17,14 @@ if (!$includeOpendbOk) {
 
 session_start();
 
+$refer = "index.php";
+
+//Look for referal page
+if (isset($_SESSION['refer'])) {
+  $refer = $_SESSION['refer'];
+}
+
+
 //Process form and set variables...
 $username = $_POST['usernameField'];
 $password = $_POST['passwordField'];
@@ -33,8 +41,9 @@ if (password_verify($password, $res['hash'])) {
   $_SESSION['loggedin'] = true;
   $_SESSION['username'] = $res['username'];
   $_SESSION['usertype'] = $res['userType'];
-  header( "refresh:2;url=../index.php" );
-  echo 'Log in successful, You will now be redirected automatically, or, click <a href="../index.php">here</a>.';
+  header("Location: " . $refer);
+  echo $refer;
+  echo 'Log in successful, You will now be redirected automatically, or, click <a href="index.php">here</a>.';
   exit;
 } 
 ?>
@@ -52,7 +61,7 @@ include("header.php");
   <input type="text" id="usernameField" name="usernameField" placeholder="Username.." required>
 
   <label for="passwordField">Password</label>
-  <input type="text" id="passwordField" name="passwordField" placeholder="Password.." required>
+  <input type="password" id="passwordField" name="passwordField" placeholder="Password.." required>
 
   <input type="reset" value="Reset">
   <input type="submit" value="Submit">

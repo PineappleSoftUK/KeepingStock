@@ -17,7 +17,7 @@ class ConstructDB extends SQLite3
 {
   function __construct()
   {
-    $this->open('pac.db');
+    $this->open(__DIR__ . '/pac.db');
   }
 }
 
@@ -32,6 +32,6 @@ if ($tableCheck->fetchArray() === false)
   $db->exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255), hash VARCHAR(255), userType VARCHAR(255))');
   
   //Populate user table
-  include 'add_base_user.php';
+  include __DIR__ . '/add_base_user.php';
 }
 ?>
