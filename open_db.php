@@ -12,7 +12,7 @@ class ConstructDB extends SQLite3
 {
   function __construct()
   {
-    $this->open('keepingstock.db');
+    $this->open(__DIR__ . '/keepingstock.db');
   }
 }
 
