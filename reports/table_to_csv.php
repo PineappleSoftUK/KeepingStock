@@ -3,28 +3,27 @@
  * Accepts a table name via HTTP Post 
  * Outputs a csv file download with SQLite table contents
  */
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 include("../secure.php");
 include("../open_db.php");
 
-// Set table name
+// Set table name, the supplied table name will be checked against a whitelist
+// First populate the whitelist
 $validTables = array();
 
 $tablesquery = $db->query("SELECT name FROM sqlite_master WHERE type='table';");
 
-while ($table = $tablesquery->fetchArray(SQLITE3_ASSOC)) {
-    array_push($validTables, $table['name']);
+while ($tableName = $tablesquery->fetchArray(SQLITE3_ASSOC)) {
+    array_push($validTables, $tableName['name']);
 }
 
-//$hash = $_POST['table'];
-$hash = "postage";
+$hash = $_POST['table'];
 
+// Check the value is in the whitelist
 if (array_search($hash, $validTables)) {
   $table = $hash;
 } else {
+  echo "Error: Invalid table name supplied";
   $table = "";
 }
 

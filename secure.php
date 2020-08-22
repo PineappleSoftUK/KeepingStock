@@ -10,5 +10,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
   header( "refresh:2;url=pineappleaccesscontrol/login.php" );
   echo 'You must log in to view this page, You will now be redirected automatically, or, click <a href="pineappleaccesscontrol/login.php">here</a>.';
   exit();
+} else {
+  $pac = "yes"; //Displays log out button
 }
 ?>
