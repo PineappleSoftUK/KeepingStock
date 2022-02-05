@@ -1,5 +1,8 @@
 # Keeping Stock
 
+## Update
+Just a note to say I am currently learning/perfecting a REST API system and I intend to change KeepingStock over to this once I am happy with my test case. In the meantime there will not be any further updates.
+
 Pineapple Soft
 
 www.pineapplesoft.co.uk
