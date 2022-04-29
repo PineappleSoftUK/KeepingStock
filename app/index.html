@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>REST Test Case</title>
+
+  <meta name="description" content="Test case for REST API">
+  <meta name="author" content="PineappleSoft">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- app js script -->
+  <script src="global.js"></script>
+
+</head>
+
+<body>
+  <nav>
+    <div class="topnav" id="topnav">
+      <a href="#" class="active" id='home'>Home</a>
+      <a href="#" id='update_account'>Account</a>
+      <a href="#" id='logout'>Logout</a>
+      <a href="#" id='login'>Login</a>
+      <a href="#" id='sign_up'>Sign Up</a>
+      <a href="javascript:void(0);" class="navIcon" onclick="expandNav()">&equiv;</a>
+    </div>
+  </nav>
+
+  <h1 id='page-title'>Home</h1>
+
+  <!-- messages and responses -->
+  <div id="response">
+  </div>
+
+  <!-- content will appear -->
+  <div id="content">
+  </div>
+
+  <!-- Load user utilities -->
+  <script src="app.js"></script>
+
+</body>
+</html>
