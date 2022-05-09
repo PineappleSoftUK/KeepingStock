@@ -2,7 +2,7 @@ $(document).ready(function(){
   /*
   Initialise
   */
-  $("#logout, #update_account").hide();
+  showLoggedOutMenu();
   showHomePage();
 
 
@@ -106,13 +106,6 @@ $(document).ready(function(){
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
-  // if the user is logged out
-  function showLoggedOutMenu(){
-    // show login and sign up from navbar & hide logout button
-    $("#login, #sign_up").show();
-    $("#logout, #update_account").hide();
-  }
-
   // trigger when login form is submitted
   $(document).on('submit', '#login_form', function(){
 
@@ -134,6 +127,7 @@ $(document).ready(function(){
         // show home page & alert successful login
         responseAlert('success', 'Login was successful, welcome!');
         showHomePage();
+        showLoggedInMenu();
       },
       error: function(xhr, resp, text){
         // alert login failed & empty the input boxes
@@ -148,9 +142,15 @@ $(document).ready(function(){
 
   // if the user is logged in
   function showLoggedInMenu(){
-    // hide login and sign up from navbar & show logout button
     $("#login, #sign_up").hide();
     $("#logout, #update_account").show();
+  }
+
+  // if the user is logged in
+  function showLoggedOutMenu(){
+    $("#logout, #update_account").hide();
+    $("#login, #sign_up").show();
+
   }
 
   /*
