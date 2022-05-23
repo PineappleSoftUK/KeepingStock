@@ -170,25 +170,7 @@ $(document).ready(function(){
 
         // values will be used to fill out our form
         var name = data.name;
-        var price = data.price;
         var description = data.description;
-        var category_id = data.category_id;
-        var category_name = data.category_name;
-
-        //$.getJSON(apiPath + "api/category/read.php", function(data){
-
-          // build categories list
-          var categories_options_html=`<select name='category_id'>`;
-          //$.each(data.records, function(key, val){
-            // pre-select option is category id is the same
-            //if(val.id==category_id){ categories_options_html+=`<option value='` + val.id + `' selected>` + val.name + `</option>`; }
-
-            //else{ categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`; }
-          //});
-
-          categories_options_html+=`<option value='1'>Test Category</option>`; //TODO This is for testing, to be removed!!!!!
-
-          categories_options_html+=`</select>`;
 
           // Build the form
           var update_category_html=`
@@ -203,16 +185,9 @@ $(document).ready(function(){
                 <label for="update-form-name">Name</label>
                 <input type='text' name='name' id="update-form-name" value="` + name + `" required />
 
-                <label for="update-form-price">Price</label>
-                <input type='number' min='1' name='price' id="update-form-price" value="` + price + `" required />
-
                 <label for="update-form-description">Description</label>
                 <input type='text' name='description' id="update-form-description" value="` + description + `"required />
 
-                <label for="update-form-category">Category</label>
-                ` + categories_options_html + `
-
-                <!-- hidden 'category id' to identify which record to delete -->
                 <input value=\"` + id + `\" name='id' type='hidden' />
 
                 <button type='submit'>Save Changes</button>

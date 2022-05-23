@@ -134,7 +134,7 @@ class Category{
     UPDATE $this->table_name
     SET
       name = :name,
-      description = :description,
+      description = :description
     WHERE id = :id
     SQL;
 
@@ -143,7 +143,7 @@ class Category{
 
     // sanitize
     $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->description=htmlspecialchars(strip_tags($this->description));;
+    $this->description=htmlspecialchars(strip_tags($this->description));
     $this->id=htmlspecialchars(strip_tags($this->id));
 
     // bind new values
