@@ -42,7 +42,7 @@ $(document).ready(function(){
           $("#content").html(read_categories_html);
 
           // chage page title
-          changePageTitle("Home");
+          changePageTitle("Categories");
 
     });
   }
@@ -85,7 +85,7 @@ $(document).ready(function(){
     // show login page on error
     .fail(function(result){
       responseAlert('warning', 'Please login to access this page.');
-      showLoginPage();
+      $("#login").click();
     });
   });
 
@@ -107,7 +107,7 @@ $(document).ready(function(){
       success : function(result) {
         // category was created, go back to categories list
         responseAlert('success', 'Category successfully added');
-        showHomePage();
+        showCategoryPage();
       },
       error: function(xhr, resp, text) {
         // show error to console
@@ -231,7 +231,7 @@ $(document).ready(function(){
     // show login page on error
     .fail(function(result){
       responseAlert('warning', 'Please login to access this page.');
-      showLoginPage();
+      $("#login").click();
     });
   });
 
@@ -253,7 +253,7 @@ $(document).ready(function(){
       success : function(result) {
         // category was created, go back to categories list
         responseAlert('success', 'Category successfully updated');
-        showHomePage();
+        showCategoryPage();
       },
       error: function(xhr, resp, text) {
         // show error to console
@@ -297,7 +297,7 @@ $(document).ready(function(){
     // show login page on error
     .fail(function(result){
       responseAlert('warning', 'Please login to access this page.');
-      showLoginPage();
+      $("#login").click();
     });
   });
 
@@ -320,7 +320,7 @@ $(document).ready(function(){
       success : function(result) {
        // category was created, go back to categories list
        responseAlert('success', 'Category successfully deleted');
-       showHomePage();
+       showCategoryPage();
       },
       error: function(xhr, resp, text) {
        // show error to console
