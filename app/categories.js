@@ -18,7 +18,7 @@ $(document).ready(function(){
             &plus; Create Category
           </button>
           <!-- start items list -->
-          <div id='item-list' class='item-list'>
+          <div id='category-list' class='item-list'>
 
           `;
 
@@ -27,10 +27,10 @@ $(document).ready(function(){
 
             // creating new div/row per record and assign id
             read_categories_html+=`
-                <div id='list-item' class='list-item' data-id='` + val.id + `'>
+                <div id='category-list-item' class='list-item' data-id='` + val.id + `'>
                   <p>
-                    <span class='list-item-name'=>` + val.name + `</span>
-                    <span class='list-item-attributes'>` + val.description + `</span>
+                    <span class='category-list-item-name'=>` + val.name + `</span>
+                    <span class='category-list-item-attributes'>` + val.description + `</span>
                   </p>
                 </div>`;
           });
@@ -122,7 +122,7 @@ $(document).ready(function(){
   Category detail/read one
   */
   // handle 'read one' button click
-  $(document).on('click', '#list-item', function(){
+  $(document).on('click', '#category-list-item', function(){
     var id = $(this).attr('data-id');
     // read category record based on given ID
     $.getJSON(apiPath + "api/category/read_one.php?id=" + id, function(data){

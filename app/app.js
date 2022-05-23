@@ -309,15 +309,13 @@ $(document).ready(function(){
     // validate jwt to verify access
     var jwt = getCookie('jwt');
     $.post(apiPath + "api/users/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
-      //$.getJSON(apiPath + "api/category/read.php", function(data){
+      $.getJSON(apiPath + "api/category/read.php", function(data){
 
         // build categories list
         var categories_options_html=`<select name='category_id'>`;
-        //$.each(data.records, function(key, val){
-        //  categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`;
-        //});
-
-        categories_options_html+=`<option value='1'>Test Category</option>`; //TODO This is for testing, to be removed!!!!!
+        $.each(data.records, function(key, val){
+          categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`;
+        });
 
         categories_options_html+=`</select>`;
 
@@ -353,7 +351,7 @@ $(document).ready(function(){
         // chage page title
         changePageTitle("Create Product");
 
-      //});
+      });
     })
     // show login page on error
     .fail(function(result){
@@ -450,18 +448,16 @@ $(document).ready(function(){
         var category_id = data.category_id;
         var category_name = data.category_name;
 
-        //$.getJSON(apiPath + "api/category/read.php", function(data){
+        $.getJSON(apiPath + "api/category/read.php", function(data){
 
           // build categories list
           var categories_options_html=`<select name='category_id'>`;
-          //$.each(data.records, function(key, val){
-            // pre-select option is category id is the same
-            //if(val.id==category_id){ categories_options_html+=`<option value='` + val.id + `' selected>` + val.name + `</option>`; }
+          $.each(data.records, function(key, val){
+             //pre-select option is category id is the same
+            if(val.id==category_id){ categories_options_html+=`<option value='` + val.id + `' selected>` + val.name + `</option>`; }
 
-            //else{ categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`; }
-          //});
-
-          categories_options_html+=`<option value='1'>Test Category</option>`; //TODO This is for testing, to be removed!!!!!
+            else{ categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`; }
+          });
 
           categories_options_html+=`</select>`;
 
@@ -500,7 +496,7 @@ $(document).ready(function(){
           // chage page title
           changePageTitle("Update Product");
 
-        //});
+        });
       });
     })
     // show login page on error
