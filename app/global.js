@@ -11,6 +11,15 @@ function expandNav() {
   }
 }
 
+//top nav active
+function makeActive(page){
+  $('#topnav').children().each(function() {
+    $(this).removeClass("active");
+  });
+
+  $(page).addClass("active");
+}
+
 // change page title
 function changePageTitle(page_title){
   // change page title

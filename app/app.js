@@ -17,6 +17,9 @@ $(document).ready(function(){
   // show sign up / registration form
   $(document).on('click', '#sign_up', function(){
 
+    //Change topnav active
+    makeActive("#sign_up");
+
     var html = `
         <h2>Sign Up</h2>
         <form id='sign_up_form'>
@@ -79,6 +82,9 @@ $(document).ready(function(){
 
     // remove any old jwt cookie
     setCookie("jwt", "", 1);
+
+    //Change topnav active
+    makeActive("#login");
 
     // login page html
     var html = `
@@ -166,6 +172,9 @@ $(document).ready(function(){
     var jwt = getCookie('jwt');
     $.post(apiPath + "api/users/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
       // if logged in, write and populate the form
+      //Change topnav active
+      makeActive("#update_account");
+
       var html = `
               <h2>Update Account</h2>
               <form id='update_account_form'>
@@ -262,6 +271,9 @@ $(document).ready(function(){
   */
   // show home page
   function showHomePage(){
+    //Change topnav active
+    makeActive("#home");
+
     // get list of products from the API
     $.getJSON(apiPath + "api/product/read.php", function(data){
       // html for listing products
@@ -601,9 +613,5 @@ $(document).ready(function(){
    });
      return false;
   });
-
-
-
-
 
 });

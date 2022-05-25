@@ -9,6 +9,8 @@ $(document).ready(function(){
   });
 
   function showCategoryPage(){
+    //Change topnav active
+    makeActive("#categories_page");
     // get list of categories from the API
     $.getJSON(apiPath + "api/category/read.php", function(data){
       // html for listing categories
