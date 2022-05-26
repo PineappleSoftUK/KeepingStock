@@ -1,36 +1,26 @@
 # Keeping Stock
 
-## Update
-Just a note to say I am currently learning/perfecting a REST API system and I intend to change KeepingStock over to this once I am happy with my test case. In the meantime there will not be any further updates.
+A RESTful web application that keeps track of products/stock. Useful for sole traders or as inspiration to develop further. As it stands the system is still basic, users can register and login then products and categories can be added and managed, styling is currently focused on mobile devices, but everything still works on desktop. With time I hope to expand this software further.
 
-Pineapple Soft
+Please see the wiki for installation instructions. Please note this software will need to be hosted on a webserver (local or remote) that has php and sqlite3 installed, javascript must be enabled client-side for the software to function.
 
-www.pineapplesoft.co.uk
+Current progress
+----------------
 
+The files currently in the main branch form working software and will become version 2 once tested. The latest 'release' is actually the former system prior to switching to REST.
 
-Description
-------------
+As mentioned the software works but is basic, I would like to add more functionality with time, but I do have one or two other projects that I will be starting soon.
 
-A simple stock management system for ebay traders or the like.
-
-
-Important Information
----------------------
+Additional Information
+----------------------
 
 This is software written by me as practice and is not guaranteed to be error free, however it may be of use as a starting point for your own project and/or adapted to suit your own needs.
-
-The files need to be hosted on a webserver running php along with sqlite3. I directory api/config will be the default location for the sqlite3 database file thus will need write permissions.
-
-Before first run please change the url from 'localhost' to a location appropriate to your setup in the following files:
-
-api/config/core.php
-app/global.js
 
 
 Licence
 --------
 
-Copyright (C) 2019 Pineapple Soft
+Copyright (C) 2022 Pineapple Soft
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -38,22 +28,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-Release Notes
---------------
-
-Version 1.2.0 -- 4 June 2020
-
-+ Added function to automatically change the postage rates to the latest Royal Mail prices.
-
-+ Changed some styling
-
-Version 1.1.0 -- 21 December 2019
-
-+ Added ability to sort columns, filter by 'out of stock' and advanced search
-
-
 Developer
 ----------
 
-Written and designed by David Ward of Pineapple Soft. Copyright 2019. All rights reserved.
+Written and designed by David Ward of Pineapple Soft. Copyright 2022. All rights reserved.
