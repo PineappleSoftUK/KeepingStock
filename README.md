@@ -19,9 +19,12 @@ Important Information
 
 This is software written by me as practice and is not guaranteed to be error free, however it may be of use as a starting point for your own project and/or adapted to suit your own needs.
 
-The files need to be hosted on a webserver running php (ideally locally, if you intend to host on the web you will need to develop a log-in system, as this is not yet complete). On the initial visit to index.php a sqlite database will be created, please ensure you have the correct directory/folder permissions to allow this to happen. The interface should be self explanatory from there, the only page you need to navigate to manually is index.php.
+The files need to be hosted on a webserver running php along with sqlite3. I directory api/config will be the default location for the sqlite3 database file thus will need write permissions.
 
-The system is currently designed for the UK and has UK postage rates.
+Before first run please change the url from 'localhost' to a location appropriate to your setup in the following files:
+
+api/config/core.php
+app/global.js
 
 
 Licence
